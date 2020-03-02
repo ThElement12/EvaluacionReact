@@ -14,6 +14,7 @@ export default class SearchBar extends Component {
         
         e.preventDefault()
         this.props.search(this.state.search)
+        
     }
 
     render() {

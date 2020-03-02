@@ -1,6 +1,7 @@
 import React from 'react'
 import ImageAPI from './ImageAPI'
 export default function ImageBody(props) {
+    console.log(props)
     return (
         <div className="imagesBody">
                 {props.results.map(item => (
