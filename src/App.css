@@ -578,7 +578,7 @@ pre code {
 .pageHeader{
   
   font-style: italic;
-  background:linear-gradient(45deg, #ff0303,#cc3a3a);
+  background:linear-gradient(45deg, #0314ff,#3a74cc);
   grid-area: header;
   display: grid;
   grid-template-columns:1fr auto auto;
@@ -590,7 +590,7 @@ pre code {
   margin-right: 2rem;
   text-align: center;
   padding: 0.25rem;
-  background: linear-gradient(45deg, #cc3a3a, #ff0303);
+  background: linear-gradient(45deg, #3a74cc, #0314ff);
   border-radius: 0.25rem;
   max-width: 100%;
   height: auto;
