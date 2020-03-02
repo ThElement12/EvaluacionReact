@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import LoadSearch from './LoadSearch'
+///import LoadSearch from './components/LoadSearch'
+import SubmitSearch from './components/SubmitSearch'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import './App.css'
-import SearchBar from './SearchBar';
+import './css/App.css'
+import SearchBar from './components/SearchBar';
 
 export default class App extends Component {
   state = {
@@ -29,7 +30,7 @@ export default class App extends Component {
         <Route exact path="/" render={() =>{
           return <div>
             <SearchBar className="searchContainer" search={this.search} />
-            {this.state.submitted && <LoadSearch search={this.state.search}/>}
+            {this.state.submitted && <SubmitSearch search={this.state.search}/>}
           </div>
         }}/>
         <Route exact path="/about" render={() =>{
