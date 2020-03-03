@@ -560,13 +560,19 @@ pre code {
   grid-template-areas:
     "header"
     "search"
-    "content";
+    "content"
+    "footer";
 }
 .searchContainer{
   text-align: center;
   grid-area: search;
   background: pink;
   
+}
+.navigationButtons{
+  text-align: center;
+  grid-area: search;
+  background: pink;
 }
 
 .imagesBody{

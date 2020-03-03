@@ -18,13 +18,15 @@ export default class App extends Component {
     this.setState({
       page: this.state.page + 1
     })
-    
+    this.search(this.state.search)
+
   }
   previousPage = () => {
-    if(this.state.page > 0){
+    if (this.state.page > 0) {
       this.setState({
         page: this.state.page - 1
       })
+      this.search(this.state.search)
     }
 
   }
@@ -37,9 +39,11 @@ export default class App extends Component {
         this.setState({
           items: json.results,
           submitted: true,
+          search: value,
         })
 
       });
+
   }
   render() {
 
@@ -54,7 +58,13 @@ export default class App extends Component {
           <Route exact path="/" render={() => {
             return <div>
               <SearchBar className="searchContainer" search={this.search} />
-              {this.state.submitted && <ImageBody results={this.state.items} />}
+              {this.state.submitted && <ImageBody results={this.state.items}  />}
+              {this.state.submitted && <footer style={{textAlign: "center"}}>
+                <button className="btn btn-primary" onClick={this.previousPage}>{'<<'}</button>
+                <button className="btn btn-primary" onClick={this.nextPage}>{'>>'}</button>
+              </footer>}
+
+              
             </div>
           }} />
           <Route exact path="/about" render={() => {
