@@ -12,17 +12,22 @@ export default class App extends Component {
     submitted: false,
     page: 1,
     items: [],
+    totalPages: 0,
   }
 
   nextPage = () => {
-    this.setState({
-      page: this.state.page + 1
-    })
+
+    if (this.state.page < this.state.totalPages) {
+      this.setState({
+        page: this.state.page + 1
+      })
+
+    }
     this.search(this.state.search)
 
   }
   previousPage = () => {
-    if (this.state.page > 0) {
+    if (this.state.page > 1) {
       this.setState({
         page: this.state.page - 1
       })
@@ -30,7 +35,6 @@ export default class App extends Component {
     }
 
   }
-
   search = value => {
 
     fetch('https://api.unsplash.com/search/photos?page=' + this.state.page + '&per_page=15&query=' + value + '&client_id=1e71698fa290e8c33bb1d3e9028f187dda800d95272d649f6fdfc31a3b89071e')
@@ -40,6 +44,7 @@ export default class App extends Component {
           items: json.results,
           submitted: true,
           search: value,
+          totalPages: json.total_pages
         })
 
       });
@@ -57,14 +62,14 @@ export default class App extends Component {
           </div>
           <Route exact path="/" render={() => {
             return <div>
+              {console.log("pagina " + this.state.page)}
               <SearchBar className="searchContainer" search={this.search} />
-              {this.state.submitted && <ImageBody results={this.state.items}  />}
-              {this.state.submitted && <footer style={{textAlign: "center"}}>
+              {!this.state.submitted && <h1>Welcome</h1>}
+              {this.state.submitted && <ImageBody results={this.state.items} />}
+              {this.state.submitted && <footer style={{ textAlign: "center" }}>
                 <button className="btn btn-primary" onClick={this.previousPage}>{'<<'}</button>
                 <button className="btn btn-primary" onClick={this.nextPage}>{'>>'}</button>
               </footer>}
-
-              
             </div>
           }} />
           <Route exact path="/about" render={() => {
