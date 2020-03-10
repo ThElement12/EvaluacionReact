@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import ImageBody from './ImageBody'
-import SearchBar from './SearchBar';
+//Native Component
+import React, { Component } from 'react';
 
-///TODO: Fix First Call of Next Page Keep The Same Page
+//Component
+import SearchBar from './SearchBar';
+import Footer from './Footer'
+
 export default class LoadSeach extends Component {
 
   state = {
@@ -12,33 +14,19 @@ export default class LoadSeach extends Component {
     items: [],
     totalPages: 0,
   }
-
-  nextPage = () => {
-
-    if (this.state.page < this.state.totalPages) {
-      this.setState({
-        page: this.state.page + 1,
-        //submitted: false,
-      })
-
-    }
-    this.search(this.state.search)
-
-  }
-  previousPage = () => {
-    if (this.state.page > 1) {
-      this.setState({
-        page: this.state.page - 1,
-        //submitted: false,
-      })
-      this.search(this.state.search)
-    }
-
+  //Fetching Functions
+  componentDidMount() {
+    fetch('https://api.unsplash.com/photos/random?count=12&client_id=' + process.env.REACT_APP_UNSPLASH_ID)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          items: json,
+        })
+      });
   }
 
   search = value => {
-
-    fetch('https://api.unsplash.com/search/photos?page=' + this.state.page + '&per_page=15&query=' + value + '&client_id=1e71698fa290e8c33bb1d3e9028f187dda800d95272d649f6fdfc31a3b89071e')
+    fetch('https://api.unsplash.com/search/photos?page=' + this.state.page + '&per_page=15&query=' + value + '&client_id=' + process.env.REACT_APP_UNSPLASH_ID)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -47,36 +35,62 @@ export default class LoadSeach extends Component {
           search: value,
           totalPages: json.total_pages
         })
-
       });
+  }
 
+  //Pagination functions
+  nextPage = () => {
+    if (this.state.page < this.state.totalPages) {
+      this.setState({
+        page: this.state.page + 1,
+      })
+    }
+    this.search(this.state.search)
+  }
+
+  previousPage = () => {
+    if (this.state.page > 1) {
+      this.setState({
+        page: this.state.page - 1,
+      })
+      this.search(this.state.search)
+    }
+  }
+
+  //Load images function
+  imageBody = () => {
+    return (
+      <div className="images-body">
+        {this.state.items.map(photo => (
+          <div className="images-box" key={photo.id} >
+            <a href={photo.urls.full} target="_blank" rel="noopener noreferrer">
+              <img className="img-thumbnail" src={photo.urls.thumb} alt={photo.alt_description} />
+            </a>
+            <br />
+            <h6>Author: <a href={photo.user.links.html} target="_blank" rel="noopener noreferrer">&#64;{photo.user.username}</a></h6>
+          </div>
+        ))}
+      </div>
+    )
   }
 
   render() {
-    
+
     if (this.state.items.length === 0 && this.state.submitted) {
       return (
         <div>
-          <SearchBar className="searchContainer" search={this.search} />
-          <h6>Oh no! No hubo resultados :(</h6>
+          <SearchBar className="search-container" search={this.search} />
+          <h6>Oh no! No results</h6>
         </div>
       )
     }
-    else {
-      return (
-        <div>
-          {console.log("pagina " + this.state.page)}
-          <SearchBar className="searchContainer" search={this.search} />
-          {!this.state.submitted && <h1>Welcome</h1>}
-          {this.state.submitted && <ImageBody results={this.state.items} />}
-          {this.state.submitted && <footer style={{ textAlign: "center" }}>
-            <button className="btn btn-primary" onClick={this.previousPage}>{'<<'}</button>
-            <button className="btn btn-primary" onClick={this.nextPage}>{'>>'}</button>
-          </footer>}
-        </div>
-      )
-
-    }
+    return (
+      <div>
+        <SearchBar className="search-container" search={this.search} />
+        {this.imageBody()}
+        {this.state.submitted && <Footer nextPage={this.nextPage} previousPage={this.previousPage}/>}
+      </div>
+    )
 
   }
 }
