@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Image Search Engine",
+  "name": "Image Search Engine",
   "icons": [
     {
       "src": "favicon.ico",
