@@ -29,7 +29,6 @@ export default class App extends Component {
           <Route exact path="/" component={LoadSeach}/>
           <Route exact path="/about" component={About}/>
         </Router>
-
       </div>
     );
   }

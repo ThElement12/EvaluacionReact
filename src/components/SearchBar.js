@@ -28,7 +28,7 @@ export default class SearchBar extends Component {
             value={this.state.search} />
           <button className="btn btn-primary" type="submit">
             Search
-                </button>
+          </button>
         </form>
       </div>
     )
