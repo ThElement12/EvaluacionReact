@@ -22,7 +22,7 @@ export default class App extends Component {
       <div className="container">
         <Router>
           <div className="page-header">
-            <h1>Welcome to Image Search Engine</h1>
+            <h1>Welcome to Image Search Engine</h1> 
             <Link to="/"><button className="btn btn-primary">Home</button></Link>
             <Link to="/about"><button className="btn btn-secondary">About us</button></Link>
           </div>

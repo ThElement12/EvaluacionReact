@@ -66,7 +66,7 @@ export default class LoadSeach extends Component {
             <a href={photo.urls.full} target="_blank" rel="noopener noreferrer">
               <img className="img-thumbnail" src={photo.urls.thumb} alt={photo.alt_description} />
             </a>
-            <br />
+            
             <h6>Author: <a href={photo.user.links.html} target="_blank" rel="noopener noreferrer">&#64;{photo.user.username}</a></h6>
           </div>
         ))}

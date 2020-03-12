@@ -19,7 +19,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
+        <form className="search-container" onSubmit={this.onSubmit} >
           <input
             type="text"
             name="search"
@@ -29,6 +29,7 @@ export default class SearchBar extends Component {
           <button className="btn btn-primary" type="submit">
             Search
           </button>
+          <label>powered by <a href="http://www.unsplash.com">unsplash.com</a> API </label>
         </form>
       </div>
     )

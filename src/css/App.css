@@ -214,6 +214,8 @@ th {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 12px;
 }
 
 button {
@@ -449,10 +451,10 @@ mark, .mark {
 }
 
 .img-thumbnail {
-  margin-top: 2rem;
+  margin: auto;
   padding: 0.25rem;
   background-color: #fff;
-  border: 1px solid #dee2e6;
+  border: 2px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
   height: auto;
@@ -527,13 +529,12 @@ pre code {
 .search-container {
   text-align: center;
   grid-area: search;
-  background: pink;
+
 }
 
 .navigation-buttons {
   text-align: center;
-  grid-area: search;
-  background: pink;
+  grid-area: footer;
 }
 
 .images-body {
@@ -541,6 +542,8 @@ pre code {
   grid-area: content;
   display: grid;
   grid-template-columns: auto;
+  justify-items: stretch;
+  
 }
 
 .page-header {
@@ -552,10 +555,9 @@ pre code {
 }
 
 .images-box {
-  margin-top: 2rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  text-align: center;
+  display: grid;
+  margin: 2rem;
+  place-items: center;
   padding: 0.25rem;
   background: linear-gradient(45deg, #9fadc4, #acacac);
   border-radius: 0.25rem;
@@ -583,7 +585,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .images-body {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
   }
 }
 
@@ -2335,14 +2337,14 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
+  color: #000;
   background-color: #9fadc4;
   border-color: #000000;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #9fadc4;
+  background-color: #929eb1;
   border-color: #180101;
 }
 
@@ -2367,15 +2369,15 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-secondary {
-  color: #fff;
+  color: #000;
   background-color: #6c757d;
-  border-color: #6c757d;
+  border-color: #000000;
 }
 
 .btn-secondary:hover {
   color: #fff;
   background-color: #5a6268;
-  border-color: #545b62;
+  border-color: #000000;
 }
 
 .btn-secondary:focus, .btn-secondary.focus {
