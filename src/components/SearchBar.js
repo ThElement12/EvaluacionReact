@@ -11,9 +11,10 @@ export default class SearchBar extends Component {
       [e.target.name]: e.target.value
     })
   }
-  onSubmit = e => {
-    e.preventDefault()
-    this.props.search(this.state.search)
+  onSubmit = event => {
+    event.preventDefault();
+    this.props.search(this.state.search);
+    
   }
 
   render() {
